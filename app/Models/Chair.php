@@ -13,4 +13,9 @@ class Chair extends Model
         'barber_id',
         'barbershop_id',
     ];
+
+    public function barberShop()
+    {
+        return $this->belongsTo(BarberShop::class);
+    }
 }
