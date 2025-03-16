@@ -13,4 +13,9 @@ class BarberShop extends Model
         'type',
         'owner_id',
     ];
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
 }
