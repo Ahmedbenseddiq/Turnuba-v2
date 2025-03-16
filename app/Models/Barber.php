@@ -15,4 +15,14 @@ class Barber extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function chair()
+    {
+        return $this->hasOne(Chair::class);
+    }
+
+    public function barberShop()
+    {
+        return $this->belongsTo(BarberShop::class);
+    }
 }

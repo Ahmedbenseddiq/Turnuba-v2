@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Resrvation extends Model
+class Reservation extends Model
 {
     protected $fillable = [
         'is_confirmed',
@@ -13,4 +13,14 @@ class Resrvation extends Model
         'client_id',
         'chair_id',
     ];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function chair()
+    {
+        return $this->belongsTo(Chair::class);
+    }
 }

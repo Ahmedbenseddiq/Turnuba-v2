@@ -18,4 +18,14 @@ class Chair extends Model
     {
         return $this->belongsTo(BarberShop::class);
     }
-}
+
+    public function barber()
+    {
+        return $this->hasOne(Barber::class);
+    }
+
+    public function reservation()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+}   
