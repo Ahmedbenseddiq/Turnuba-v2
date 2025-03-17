@@ -35,6 +35,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('owner.dashboard');
         } elseif ($user->role === 'client') {
             return redirect()->route('client.dashboard');
+        }elseif ($user->role === 'barber') {
+            return redirect()->route('barber.dashboard');
         }
     
 
