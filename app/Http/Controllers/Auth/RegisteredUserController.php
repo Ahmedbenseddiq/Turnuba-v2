@@ -48,10 +48,18 @@ class RegisteredUserController extends Controller
             'role' => $request->role,
         ]);
 
+        if ($request->role === 'owner') {
+            $user->owner()->create();
+            $returnRedirect = route('dashboard.owner');
+        } else {
+            $user->client()->create();
+            $returnRedirect = route('dashboard.client');
+        }
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect($returnRedirect);
     }
 }
