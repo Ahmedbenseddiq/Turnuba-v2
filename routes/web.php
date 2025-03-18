@@ -21,12 +21,13 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'role:owner'])->group(function () {
     Route::get('/owner/dashboard', [ownerController::class, 'index'])->name('owner.dashboard');
-    Route::get('/client/dashboard', [clientController::class, 'index'])->name('client.dashboard');
 });
 
-
+Route::middleware(['auth', 'role:client'])->group(function () {
+    Route::get('/client/dashboard', [clientController::class, 'index'])->name('client.dashboard');
+});
 
 
 
