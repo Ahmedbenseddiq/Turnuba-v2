@@ -2,7 +2,7 @@
     <div class="max-w-6xl mx-auto mt-10">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-2xl font-bold text-white">Barbershops</h1>
-            <a href="" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+            <a href="{{route('barberShop.create')}}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
                 Create New Barbershop
             </a>
         </div>
@@ -20,13 +20,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    @foreach ($barberShops as $barberShop)
                         <tr class="hover:bg-gray-100">
                             <td class="px-4 py-2 border text-center"></td>
-                            <td class="px-4 py-2 border"></td>
-                            <td class="px-4 py-2 border"></td>
-                            <td class="px-4 py-2 border"></td>
-                            <td class="px-4 py-2 border"></td>
+                            <td class="px-4 py-2 border">{{$barberShop->name}}</td>
+                            <td class="px-4 py-2 border">{{$barberShop->address}}</td>
+                            <td class="px-4 py-2 border">{{$barberShop->phone}}</td>
+                            <td class="px-4 py-2 border">{{$barberShop->type}}</td>
                             <td class="px-4 py-2 border text-center">
                                 <a href="" class="text-blue-500 hover:underline">Edit</a>
                                 <form action="" method="POST" class="inline">
@@ -34,13 +34,14 @@
                                 </form>
                             </td>
                         </tr>
+                    @endforeach
                     
     
-                    {{-- @if ($barbershops->isEmpty())
+                    @if ($barberShops->isEmpty())
                         <tr>
                             <td colspan="6" class="px-4 py-2 text-center text-gray-500">No barbershops found.</td>
                         </tr>
-                    @endif --}}
+                    @endif
                 </tbody>
             </table>
         </div>

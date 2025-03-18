@@ -19,5 +19,10 @@ class barberShopRepository implements barberShopInterface
     {
         return BarberShop::all();
     }
+
+    public function storeBarberShop($request)
+    {
+        dd($request);
+    }
 }
 
