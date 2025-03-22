@@ -11,7 +11,7 @@
             <table class="w-full border-collapse">
                 <thead>
                     <tr class="bg-gray-200">
-                        <th class="px-4 py-2 border">#</th>
+                        
                         <th class="px-4 py-2 border">Name</th>
                         <th class="px-4 py-2 border">Address</th>
                         <th class="px-4 py-2 border">Phone</th>
@@ -22,7 +22,6 @@
                 <tbody>
                     @foreach ($barberShops as $barberShop)
                         <tr class="hover:bg-gray-100">
-                            <td class="px-4 py-2 border text-center"></td>
                             <td class="px-4 py-2 border">{{$barberShop->name}}</td>
                             <td class="px-4 py-2 border">{{$barberShop->address}}</td>
                             <td class="px-4 py-2 border">{{$barberShop->phone}}</td>

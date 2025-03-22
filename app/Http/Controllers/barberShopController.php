@@ -20,7 +20,14 @@ class barberShopController extends Controller
      */
     public function getAll()
     {
-        $barberShops = $this->barberShopInterface->getAllBarberShops();
+        // $barberShops = $this->barberShopInterface->getAllBarberShops();
+
+        // return view('barberShop.index', ['barberShops' => $barberShops]);
+    }
+
+    public function getMyBarberShops()
+    {
+        $barberShops = $this->barberShopInterface->getMyBarberShops();
 
         return view('barberShop.index', ['barberShops' => $barberShops]);
     }
@@ -38,7 +45,22 @@ class barberShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'type' => 'required', 'in:male,female, mixte'
+        ]);
+        // dd($request->all());
+
+        $barberShop = $this->barberShopInterface->storeBarberShop($request);
+
+        if($barberShop){
+            return back()->with('success', 'BarberShop created successfully');
+        }else{
+            return back()->with('error', 'BarberShop creation failed');
+        }
     }
 
     /**
