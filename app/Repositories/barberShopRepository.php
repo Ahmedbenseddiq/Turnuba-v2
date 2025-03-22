@@ -47,5 +47,38 @@ class barberShopRepository implements barberShopInterface
             'owner_id' => $owner->id,
         ]);
     }
+
+    public function showBarberShop($barberShop)
+    {
+        return $barberShop = BarberShop::findOrFail($barberShop);
+    }
+
+
+    public function editBarberShop($barberShop)
+    {
+        return $barberShop = BarberShop::findOrFail($barberShop);
+    }
+
+
+    public function updateBarberShop($request, $barberShop)
+    {
+        $barberShop = BarberShop::findOrFail($barberShop);
+
+        $barberShop->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'type' => $request->type,
+        ]);
+
+        return $barberShop;
+    }
+
+    public function destroyBarberShop($barberShop)
+    {
+        $barberShop = BarberShop::findOrFail($barberShop);
+
+        return $barberShop->delete();
+    }
 }
 

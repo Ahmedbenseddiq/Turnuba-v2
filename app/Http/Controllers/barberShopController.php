@@ -68,7 +68,9 @@ class barberShopController extends Controller
      */
     public function show(BarberShop $barberShop)
     {
-        //
+        $barberShop = $this->barberShopInterface->showBarberShop($barberShop->id);
+        // dd($barberShop);
+        return view('barberShop.show', ['barberShop' => $barberShop]);
     }
 
     /**
@@ -76,7 +78,10 @@ class barberShopController extends Controller
      */
     public function edit(BarberShop $barberShop)
     {
-        //
+        // dd(vars: $barberShop);
+        $barberShop = $this->barberShopInterface->editBarberShop($barberShop->id);
+        // dd($barberShop);
+        return view('barberShop.edit', ['barberShop' => $barberShop]);
     }
 
     /**
@@ -84,7 +89,21 @@ class barberShopController extends Controller
      */
     public function update(Request $request, BarberShop $barberShop)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'type' => 'required', 'in:male,female, mixte'
+        ]);
+
+        $barberShop = $this->barberShopInterface->updateBarberShop($request, $barberShop->id);
+
+        if($barberShop){
+            return to_route('barberShop.index')->with('success', 'BarberShop updated successfully');
+        }else{
+            return back()->with('error', 'BarberShop update failed');
+        }
+
     }
 
     /**
@@ -92,6 +111,12 @@ class barberShopController extends Controller
      */
     public function destroy(BarberShop $barberShop)
     {
-        //
+        $barberShop = $this->barberShopInterface->destroyBarberShop($barberShop->id);
+
+        if($barberShop){
+            return to_route('barberShop.index')->with('success', 'BarberShop deleted successfully');
+        }else{
+            return to_route('barberShop.index')->with('error', 'BarberShop deletion failed');
+        }
     }
 }
