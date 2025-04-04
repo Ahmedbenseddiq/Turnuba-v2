@@ -48,11 +48,11 @@ class barberShopRepository implements barberShopInterface
     }
 
 
-    public function updateBarberShop($request, $barberShop)
+    public function updateBarberShop($barberShopData, $barberShop)
     {
         $barberShop = BarberShop::findOrFail($barberShop);
 
-        $barberShop->update();
+        $barberShop->update($barberShopData);
 
         return $barberShop;
     }

@@ -10,7 +10,7 @@
         @endif
         <form action="{{route('barberShop.update', $barberShop)}}" method="POST" class="space-y-4">
             @csrf
-            @method('PATCH')
+            @method('PUT')
             <div>
                 <label for="name" class="block text-gray-700 font-semibold">Name</label>
                 <input type="text" name="name" id="name" 

@@ -85,7 +85,7 @@ class barberShopController extends Controller
     public function edit(BarberShop $barberShop)
     {
         // dd(vars: $barberShop);
-        $barberShop = $this->barberShopInterface->editBarberShop($barberShop->id);
+        $barberShop = $this->barberShopService->editBarberShop($barberShop->id);
         // dd($barberShop);
         return view('barberShop.edit', ['barberShop' => $barberShop]);
     }
@@ -102,7 +102,7 @@ class barberShopController extends Controller
             'type' => 'required', 'in:male,female, mixte'
         ]);
 
-        $barberShop = $this->barberShopInterface->updateBarberShop($request, $barberShop->id);
+        $barberShop = $this->barberShopService->updateBarberShop($request, $barberShop->id);
 
         if($barberShop){
             return to_route('barberShop.index')->with('success', 'BarberShop updated successfully');
