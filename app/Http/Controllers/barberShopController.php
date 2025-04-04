@@ -2,32 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\barberShopInterface;
+
 use App\Models\BarberShop;
+use App\Services\barberShopService;
 use Illuminate\Http\Request;
 
 class barberShopController extends Controller
 {
-    private $barberShopInterface;
+    private $barberShopService;
 
-    public function __construct(barberShopInterface $barberShopInterface)
+    public function __construct(barberShopService $barberShopService)
     {
-        $this->barberShopInterface = $barberShopInterface;
+        $this->barberShopService = $barberShopService;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function getAll()
-    {
-        // $barberShops = $this->barberShopInterface->getAllBarberShops();
+    // public function getAll()
+    // {
+    //     $barberShops = $this->barberShopInterface->getAllBarberShops();
 
-        // return view('barberShop.index', ['barberShops' => $barberShops]);
-    }
+    //      return view('barberShop.index', ['barberShops' => $barberShops]);
+    // }
 
     public function getMyBarberShops()
     {
-        $barberShops = $this->barberShopInterface->getMyBarberShops();
+        $barberShops = $this->barberShopService->getMyBarberShops();
 
         return view('barberShop.index', ['barberShops' => $barberShops]);
     }
@@ -54,7 +55,8 @@ class barberShopController extends Controller
         ]);
         // dd($request->all());
 
-        $barberShop = $this->barberShopInterface->storeBarberShop($request);
+        $barberShop = $this->barberShopService->storeBarberShop($request);
+        // dd($request->all());
 
         if($barberShop){
             return back()->with('success', 'BarberShop created successfully');
@@ -68,9 +70,13 @@ class barberShopController extends Controller
      */
     public function show(BarberShop $barberShop)
     {
-        $barberShop = $this->barberShopInterface->showBarberShop($barberShop->id);
-        // dd($barberShop);
-        return view('barberShop.show', ['barberShop' => $barberShop]);
+        $barberShop = $this->barberShopService->showBarberShop($barberShop->id);
+        if ($barberShop) {
+            return view('barberShop.show', ['barberShop' => $barberShop]);
+        }else {
+            return back()->with('error', 'Can not found this barber shop');
+        }
+        
     }
 
     /**

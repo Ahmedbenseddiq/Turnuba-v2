@@ -31,21 +31,9 @@ class barberShopRepository implements barberShopInterface
         return BarberShop::where('owner_id', $owner->id)->get();
     }
 
-    public function storeBarberShop($request)
+    public function storeBarberShop($barberShop)
     {
-        $owner = Auth::user()->owner()->first();
-
-        if (!$owner) {
-            throw new \Exception('No owner associated with the authenticated user.');
-        }
-        // // dd($owner);
-        return BarberShop::create([
-            'name' => $request->name,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'type' => $request->type,
-            'owner_id' => $owner->id,
-        ]);
+        return BarberShop::create($barberShop);
     }
 
     public function showBarberShop($barberShop)
@@ -64,12 +52,7 @@ class barberShopRepository implements barberShopInterface
     {
         $barberShop = BarberShop::findOrFail($barberShop);
 
-        $barberShop->update([
-            'name' => $request->name,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'type' => $request->type,
-        ]);
+        $barberShop->update();
 
         return $barberShop;
     }

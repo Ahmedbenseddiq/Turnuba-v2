@@ -6,7 +6,7 @@ interface barberShopInterface
 {
     public function getAllBarberShops();
     public function getMyBarberShops();
-    public function storeBarberShop($request);
+    public function storeBarberShop($barberShop);
 
     public function showBarberShop($barberShop);
 
