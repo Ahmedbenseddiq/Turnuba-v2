@@ -24,8 +24,8 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'role:owner'])->group(function () {
-    Route::get('/owner/dashboard', [ownerController::class, 'index'])->name('owner.dashboard');
 
+    Route::get('/owner/dashboard', [ownerController::class, 'index'])->name('owner.dashboard');
     Route::get('owner/barberShop', [barberShopController::class, 'getMyBarberShops'])->name('barberShop.index');
     Route::get('owner/barberShop/create', [barberShopController::class, 'create'])->name('barberShop.create');
     Route::post('owner/barberShop', [barberShopController::class, 'store'])->name('barberShop.store');
@@ -33,6 +33,15 @@ Route::middleware(['auth', 'role:owner'])->group(function () {
     Route::get('owner/barberShop/{barberShop}/edit', [barberShopController::class, 'edit'])->name('barberShop.edit');
     Route::put('owner/barberShop/{barberShop}', [barberShopController::class, 'update'])->name('barberShop.update');
     Route::delete('owner/barberShop/{barberShop}', [barberShopController::class, 'destroy'])->name('barberShop.destroy');
+
+    Route::get('owner/chair', [barberShopController::class, 'index'])->name('chair.index');
+    Route::get('owner/chair/create', [barberShopController::class, 'create'])->name('chair.create');
+    Route::post('owner/chair', [barberShopController::class, 'store'])->name('chair.store');
+    Route::get('owner/chair/{chair}', [barberShopController::class, 'show'])->name('chair.show');
+    Route::get('owner/chair/{chair}/edit', [barberShopController::class, 'edit'])->name('chair.edit');
+    Route::put('owner/chair/{chair}', [barberShopController::class, 'update'])->name('chair.update');
+    Route::delete('owner/chair/{chair}', [barberShopController::class, 'destroy'])->name('chair.destroy');
+
 });
 
 Route::middleware(['auth', 'role:barber'])->group(function () {
