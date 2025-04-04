@@ -60,4 +60,9 @@ class barberShopService
         
         return $this->barberShopInterface->updateBarberShop($barberShopData, $barberShop);
     }
+
+    public function destroyBarberShop ($barberShop)
+    {
+        return $this->barberShopInterface->destroyBarberShop($barberShop);
+    }
 }

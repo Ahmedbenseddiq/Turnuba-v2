@@ -117,7 +117,7 @@ class barberShopController extends Controller
      */
     public function destroy(BarberShop $barberShop)
     {
-        $barberShop = $this->barberShopInterface->destroyBarberShop($barberShop->id);
+        $barberShop = $this->barberShopService->destroyBarberShop($barberShop->id);
 
         if($barberShop){
             return to_route('barberShop.index')->with('success', 'BarberShop deleted successfully');
